@@ -59,20 +59,9 @@ namespace AgeInSeconds
         {
             int days = 0;
 
-            // August through December
-            if (month >= 8 && month <= 12)
-            {
-                if (month % 2 == 0)
-                {
-                    days = 31;
-                }
-                else
-                {
-                    days = 30;
-                }
-            }
+            
             // January through July
-            else
+            if (month >= 1 && month >= 7)
             {
                 // February
                 if (month == 2)
@@ -85,14 +74,17 @@ namespace AgeInSeconds
                         days++;
                     }
                 }
-                else if (month % 2 == 0)
-                {
-                    days = 30;
-                }
                 else
                 {
-                    days = 31;
+                    // Even months have 30 days while odd has 31
+                    days = (month % 2 == 0) ? 30 : 31;
                 }
+            }
+            // August through December
+            else if (month >= 8 && month <= 12)
+            {
+                // Even months have 31 days while odd has 30
+                days = (month % 2 == 0) ? 31 : 30;
             }
 
             return days;
